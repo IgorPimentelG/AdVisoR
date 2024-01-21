@@ -11,6 +11,8 @@ import java.util.UUID;
 
 @Data
 @NoArgsConstructor
+@Entity
+@Table(name = "tb_products")
 public class Product implements Serializable {
 
 	@Serial

@@ -15,6 +15,8 @@ import java.util.UUID;
 
 @Data
 @NoArgsConstructor
+@Entity
+@Table(name = "tb_clients")
 public class Client implements Serializable {
 
 	@Serial
@@ -32,9 +34,10 @@ public class Client implements Serializable {
 
 	private BigDecimal budget;
 	private String email;
-	private String CPF;
+	private String cpf;
 
 	@Column(name = "order_preference")
+	@Enumerated(EnumType.STRING)
 	private OrderPreference orderPreference;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -43,7 +46,7 @@ public class Client implements Serializable {
 
 	@ManyToMany
 	@JoinTable(
-	  name = "client_category",
+	  name = "tb_clients_categories",
 	  joinColumns = @JoinColumn(name = "client_id"),
 	  inverseJoinColumns = @JoinColumn(name = "category_id")
 	)
@@ -60,7 +63,7 @@ public class Client implements Serializable {
 	  String fullName,
 	  LocalDate bornDate,
 	  String email,
-	  String CPF,
+	  String cpf,
 	  BigDecimal budget,
 	  OrderPreference orderPreference,
 	  Address address
@@ -68,7 +71,7 @@ public class Client implements Serializable {
 		this.fullName = fullName;
 		this.bornDate = bornDate;
 		this.email = email;
-		this.CPF = CPF;
+		this.cpf = cpf;
 		this.budget = budget;
 		this.orderPreference = orderPreference;
 		this.address = address;

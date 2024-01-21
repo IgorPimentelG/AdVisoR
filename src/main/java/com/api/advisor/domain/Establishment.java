@@ -12,6 +12,8 @@ import java.util.UUID;
 
 @Data
 @NoArgsConstructor
+@Entity
+@Table(name = "tb_establishments")
 public class Establishment implements Serializable {
 
 	@Serial
@@ -24,7 +26,7 @@ public class Establishment implements Serializable {
 	@Column(name = "corporate_name")
 	private String corporateName;
 
-	private String CNPJ;
+	private String cnpj;
 
 	@Singular
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "establishment")
@@ -41,9 +43,9 @@ public class Establishment implements Serializable {
 	private LocalDateTime updatedAt;
 
 	@Builder
-	public Establishment(String corporateName, String CNPJ, Address address) {
+	public Establishment(String corporateName, String cnpj, Address address) {
 		this.corporateName = corporateName;
-		this.CNPJ = CNPJ;
+		this.cnpj = cnpj;
 		this.address = address;
 	}
 
