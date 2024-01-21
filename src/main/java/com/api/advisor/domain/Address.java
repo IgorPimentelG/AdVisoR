@@ -9,6 +9,8 @@ import java.util.UUID;
 
 @Data
 @NoArgsConstructor
+@Entity
+@Table(name = "tb_addresses")
 public class Address implements Serializable {
 
 	@Serial
@@ -22,14 +24,16 @@ public class Address implements Serializable {
 	private String street;
 	private String state;
 	private String neighborhood;
-	private Integer number;
+	private String number;
+	private String zipcode;
 
 	@Builder
-	public Address(String city, String street, String state, String neighborhood, Integer number) {
+	public Address(String city, String street, String state, String neighborhood, String number, String zipcode) {
 		this.city = city;
 		this.street = street;
 		this.state = state;
 		this.neighborhood = neighborhood;
 		this.number = number;
+		this.zipcode = zipcode;
 	}
 }

@@ -10,6 +10,8 @@ import java.util.UUID;
 
 @Data
 @NoArgsConstructor
+@Entity
+@Table(name = "tb_categories")
 public class Category implements Serializable {
 
 	@Serial
