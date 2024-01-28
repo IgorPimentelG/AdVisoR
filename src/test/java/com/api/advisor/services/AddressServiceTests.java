@@ -45,7 +45,7 @@ public class AddressServiceTests {
 		when(mapper.toResponse(addressEntity)).thenReturn(addressResponse);
 		when(repository.save(any())).thenReturn(addressEntity);
 
-		var result = service.save(addressPayload);
+		var result = service.create(addressPayload);
 
 		verify(repository, times(1)).save(any());
 		assertNotNull(result);
@@ -70,7 +70,7 @@ public class AddressServiceTests {
 		  "updated-zipcode"
 		);
 		var addressResponse = new AddressResponseDTO(
-	        UUID.randomUUID().toString(),
+	        address.getId().toString(),
 		  "updated-city",
 		  "updated-state",
 		  "updated-street",
@@ -82,7 +82,7 @@ public class AddressServiceTests {
 		when(repository.findById(any())).thenReturn(Optional.of(address));
 		when(mapper.toResponse(address)).thenReturn(addressResponse);
 
-		var result = service.update(UUID.randomUUID().toString(), addressPayload);
+		var result = service.update(address.getId().toString(), addressPayload);
 
 		verify(repository, times(1)).save(any());
 		assertNotNull(result);

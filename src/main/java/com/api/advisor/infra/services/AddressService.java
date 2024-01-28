@@ -11,14 +11,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class AddressService {
 
 	private final AddressRepository repository;
 	private final AddressMapper mapper;
 
-	public AddressResponseDTO save(AddressPayloadDTO payload) {
+	public AddressResponseDTO create(AddressPayloadDTO payload) {
 		var address = mapper.toEntity(payload);
 		repository.save(address);
 
