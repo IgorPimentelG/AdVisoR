@@ -12,8 +12,8 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface AddressMapper {
 	Address toEntity(AddressPayloadDTO source);
-	AddressResponseDTO toResponse (Address source);
-	List<AddressResponseDTO> toResponse (List<Address> source);
+	AddressResponseDTO toResponse(Address source);
+	List<AddressResponseDTO> toResponse(List<Address> source);
 
 	@Mapping(target = "id", ignore = true)
 	void update(AddressPayloadDTO source, @MappingTarget Address target);
