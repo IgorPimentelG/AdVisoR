@@ -42,6 +42,11 @@ public class AddressService {
 		return mapper.toResponse(address);
 	}
 
+	public void delete(String id) {
+		var address = find(id);
+		repository.delete(address);
+	}
+
 	private Address find(String id) {
 		return repository.findById(UUID.fromString(id))
 		  .orElseThrow(() -> new NotFoundException("Address not found."));
