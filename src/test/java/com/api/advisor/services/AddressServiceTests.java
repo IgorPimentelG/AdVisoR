@@ -160,4 +160,32 @@ public class AddressServiceTests {
 		assertEquals(1, result.size());
 		assertEquals(addressList.get(0).getId().toString(), result.get(0).id());
 	}
+
+	@Test
+	@DisplayName("Should delete an address")
+	void testDeleteAddress() {
+		var address = AddressMock.createEntity();
+
+		when(repository.findById(any())).thenReturn(Optional.of(address));
+
+		service.delete(address.getId().toString());
+
+		verify(repository, times(1)).findById(any());
+		verify(repository, times(1)).delete(any());
+	}
+
+	@Test
+	@DisplayName("Should throw NotFoundException when delete an address does not exist")
+	void testDeleteAddressNotFound() {
+		Exception exception = assertThrows(NotFoundException.class, () -> {
+			service.delete(UUID.randomUUID().toString());
+		});
+
+		String expectedMessage = "Address not found.";
+		String resultMessage = exception.getMessage();
+
+		verify(repository, times(1)).findById(any());
+		verify(repository, times(0)).delete(any());
+		assertEquals(expectedMessage, resultMessage);
+	}
 }
